@@ -2,6 +2,7 @@
 using StrategyPattern.Models;
 using StrategyPattern.Services.Abstract;
 using StrategyPattern.Services.Concrete;
+using StrategyPatternUI.Enums;
 using System.Collections.Generic;
 
 namespace StrategyPattern.Controllers
@@ -20,13 +21,13 @@ namespace StrategyPattern.Controllers
 
             switch (checkout.SelectedMethod)
             {
-                case 1:
+                case (int)ESelectedMethod.FreeShippingStrategy:
                     _shipping.SetStrategy(new FreeShippingStrategy());
                     break;
-                case 2:
+                case (int)ESelectedMethod.LocalShippingStrategy:
                     _shipping.SetStrategy(new LocalShippingStrategy());
                     break;
-                case 3:
+                case (int)ESelectedMethod.WorldwideShippingStrategy:
                     _shipping.SetStrategy(new WorldwideShippingStrategy());
                     break;
             }
@@ -46,16 +47,16 @@ namespace StrategyPattern.Controllers
             {
                 new Shipping()
                 {
-                    Id = 1,
-                    Name="Free Shipping ($0.00)"
+                    Id = (int)ESelectedMethod.FreeShippingStrategy,
+                    Name="Free Shipping (₺0.00)"
                 },
                 new Shipping() {
-                    Id = 2,
-                    Name="Local Shipping (10.00)"
+                    Id = (int)ESelectedMethod.LocalShippingStrategy,
+                    Name="Local Shipping (₺10.00)"
                 },
                 new Shipping() {
-                    Id = 3,
-                    Name="Worldwide Shipping (20.00)"
+                    Id = (int)ESelectedMethod.WorldwideShippingStrategy,
+                    Name="Worldwide Shipping (₺20.00)"
                 }
             };
     }
